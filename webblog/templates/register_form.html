@@ -1,0 +1,91 @@
+{% extends 'layout.html'%}
+
+{% block content %}
+
+<div class="container">
+
+    {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{message}}
+                </div>
+
+            {% endfor%}  
+        {% endif %} 
+    
+    {% endwith %}
+    
+    
+    <form action="" method="POST">
+        {{form.hidden_tag()}}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-3 font-italic">Spered Positivity Today</legend>
+            <div class="form-group">
+                {{form.username.label(class='form-control-label')}}
+                
+    
+                {% if form.username.errors %}
+                    {{form.username(class='form-control  is-invalid')}}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                            <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{form.username(class='form-control')}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.email.label(class='form-control-label')}}
+                {% if form.email.errors %}
+                    {{form.email(class='form-control  is-invalid')}}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{form.email(class='form-control')}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.password.label(class='form-control-label')}}
+                {% if form.password.errors %}
+                    {{form.password(class='form-control  is-invalid')}}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                            <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{form.password(class='form-control')}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.conform_password.label(class='form-control-label')}}
+                {% if form.conform_password.errors %}
+                    {{form.conform_password(class='form-control  is-invalid')}}
+                        <div class="invalid-feedback">
+                            {% for error in form.conform_password.errors %}
+                            <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                {% else %}
+                    {{form.conform_password(class='form-control')}}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{form.submit(class='btn btn-outline-success')}}
+            </div>
+        </fieldset>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Already Have An Account? <a class="ml-2" href="{{url_for('Login')}}">Login</a>
+        </small>
+    </div>
+</div>
+
+
+{% endblock content %}

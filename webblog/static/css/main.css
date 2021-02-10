@@ -1,0 +1,16 @@
+/* @import './BantenUnfamous.ttf'; */
+*{
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+.post_image{
+    border-bottom: 2px solid grey;
+}
+
+body{
+    background-color: bisque;
+}
+
+
+

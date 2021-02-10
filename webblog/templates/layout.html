@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kushan Gayantha">
+    <meta name="keywords" content="python/flask/bootstrap/javascript/css/html/sql">
+    <title>Flask Blog</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap-social.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+    
+</head>
+<body>
+  <style>
+    
+  </style>
+    
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Flask Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarsExample04">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{url_for('Index')}}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                
+                {% if current_user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('Add')}}">Add Post</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('UserAccount')}}">Account</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('Logout')}}">Logout</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('Register')}}">Register</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('Login')}}">Login</a>
+                  </li>
+                  
+                {% endif %}
+                
+                
+              </ul>
+              
+            </div>
+        </nav>
+
+   
+    
+
+    <div class="container mx-auto p-4">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    
+
+    <script src="{{ url_for('static',filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+</body>
+</html>

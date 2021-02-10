@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <style>
+            .post_image{
+                
+                
+                box-shadow: 0px 10px 25px 3px grey;
+            }
+
+    </style>
+
+    
+
+    
+
+    <div class="container ">
+        {% for post in posts %}
+            {% if post.image%}
+                <div class="col">
+                    <div class="card mb-4 shadow-sm">
+                        <a href="/account/{{post.author.username}}_{{post.author.id}}" class="">
+                        <strong class="d-inline-block mb-0 text-primary ml-2 p-2">#{{post.author.username}}</strong>
+                        </a>
+                        <hr>
+                    <img src="{{post.image}}" alt="Image" width="100%" height="100%" class="post_image">
+                        <div class="card-body">
+                            <p class="card-text text-center ">{{post.content}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                            {% if current_user.is_authenticated %}
+                                {% if post.author.username==current_user.username %}
+                                    <div class="btn-group">
+                                        <a type="button" href="/post_update/{{post.id}}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a type="button" href="/delete/{{post.id}}" class="text-danger btn btn-sm btn-outline-secondary btn-outline-danger">Delete</a>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                            <small class="text-muted ">{{post.date.date()}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% else%}
+                <div class="col">
+                    <div class="card mb-4 shadow-sm">
+                        <a href="/account/{{post.author.username}}_{{post.author.id}}" class="">
+                        <strong class="d-inline-block mb-0 text-primary ml-2 p-2">#{{post.author.username}}</strong>
+                        </a>
+                        <hr>
+                    
+                        <div class="card-body">
+                            <p class="card-text text-center ">{{post.content}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                            {% if current_user.is_authenticated %}
+                                {% if post.author.username==current_user.username %}
+                                    <div class="btn-group">
+                                        <a type="button" href="/post_update/{{post.id}}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        <a type="button" href="/delete/{{post.id}}" class="text-danger btn btn-sm btn-outline-secondary btn-outline-danger">Delete</a>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                            <small class="text-muted ">{{post.date.date()}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}    
+
+
+        {% endfor %}   
+
+    </div>
+{% endblock content %}

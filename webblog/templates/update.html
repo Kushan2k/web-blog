@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<style>
+    label{
+        display: inline-inline;
+        background-color: indigo;
+        color: white;
+        padding: 0.5rem;
+        font-family: sans-serif;
+        border-radius: 0.3rem;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+</style>
+
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <fieldset class="form-group">
+                <div class="col">
+                    <div class="card mb-4 shadow-sm">
+                        <a href="/account/{{post.author.username}}_{{post.author.id}}" class="">
+                        <strong class="d-inline-block mb-0 text-primary ml-2 p-2">#{{post.author.username}}</strong>
+                        </a>
+                        <hr>
+                        {% if post.image %}
+                            <img src="{{post.image}}" alt="Image" width="100%" height="100%" class="post_image">
+                        {% endif %}    
+                        <div class="form-group">
+                            <input type="file" name="image_file" id="upload" >
+                            
+
+                        </div>
+
+                    
+                        <div class="card-body">
+                            {{form.content(class='form-control')}}
+
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <small class="text-muted ">{{post.date.date()}}</small>
+                            </div>
+                            <div class="form-group mt-3">
+                                {{form.update(class='btn btn-outline-success')}}
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock content %}
